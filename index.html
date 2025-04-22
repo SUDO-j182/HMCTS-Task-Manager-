@@ -24,11 +24,49 @@
          <!--HEADER START-->
   <header>                    <!--APP NAME-->
     <h1>HMCTS Task Manager</h1>
+          <!--HEADER END-->
   </header>
  
        <!--MAIN START-->
   <main>
 
+  <div class="newtask-form-group">
+         <!--newtask FORM START-->
+    <form>
+     <h2>Create New Task</h2>
+                              <!--newtask TITLE-->
+    <div class="newtask-title">
+     <label for="taskTitle">Task Title</label>
+       <input type="text" id="taskTitle" name="taskTitle" placeholder="Task Title" required>
+    </div>
+                                    <!--newtask DESCRIPTION-->
+    <div class="newtask-description">
+     <label for="taskDescription">Task Description</label>
+       <input type="text" id="taskDescription" name="taskDescription" placeholder="Add a description..." required>
+    </div>
+                                <!--newtask DUEDATE/TIME-->
+    <div class="newtask-duedate">
+     <label for="taskDueDate">Task Due Date and Time</label>
+          <input type="datetime-local" id="taskDueDate" name="taskDueDate" required>
+    </div>
+                                <!--newtask STATUS-->
+    <div class="newtask-status">
+      <label for="taskStatus">Status</label>
+        <select id="taskStatus" name="taskStatus" required>
+          <option value="todo">To Do</option>
+          <option value="inprogress">In Progress</option>
+          <option value="done">Complete</option>
+        </select>
+     </div>
+                              <!--newtask BUTTON-->
+    <div class="submit-button">
+     <button type="submit" id="submitTask">Create New Task</button>
+    </div> 
+    </form>
+       <!--NEW TASK FORM END-->
+  </div>
+  
+        <!--MAIN END-->
   </main>
 
          <!--FOOTER START-->
@@ -36,7 +74,7 @@
 
 
   </footer>
-
+                                   <!--LINK TO JS FILE-->
    <script src="script.js"></script>
         <!--BODY END-->      
   </body>
