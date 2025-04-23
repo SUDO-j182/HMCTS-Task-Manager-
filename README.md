@@ -3,7 +3,7 @@
 A task management system for HMCTS caseworkers. Built as part of the April/2025 HMCTS Junior Software Developer coding challenge.
 
 **Status**: Work in Progress  
-**Last Updated**: April 23, 2025
+**Last Updated**: April 24, 2025
 
 ---
 
@@ -20,21 +20,32 @@ A task management system for HMCTS caseworkers. Built as part of the April/2025 
 - Tasks include title, description, datetime, and status  
 - Tasks render to the DOM on submission  
 - Edit, Save, and Delete functionality implemented and working  
+- Tasks now sent via POST to the backend API on creation  
+- `renderTask()` function modularized and reused for dynamic DOM rendering  
+- Input validation and error handling included  
 - DOM-safe structure, accessible labels, and semantic markup applied
 
 ---
 
-## Backend (Upcoming)
+## Backend
 
 **Tech Stack**  
 - Node.js  
 - Express.js  
-- PostgreSQL
+- PostgreSQL (coming next)
 
-**The backend will handle:**  
-- Task persistence  
-- RESTful API (CRUD operations)  
-- Integration with frontend for dynamic task management
+**Implemented API Routes:**  
+- `GET /api/tasks` → Returns all tasks  
+- `GET /api/tasks/:id` → Returns a task by ID  
+- `POST /api/tasks` → Creates a new task  
+- `PUT /api/tasks/:id` → Updates an existing task  
+- `DELETE /api/tasks/:id` → Deletes a task by ID
+
+**Features:**  
+- Basic input validation  
+- In-memory task storage (temporary)  
+- JSON response formatting  
+- Ready for database integration
 
 ---
 
@@ -48,4 +59,5 @@ A task management system for HMCTS caseworkers. Built as part of the April/2025 
 
 - Code is structured, modular, and readable with clear inline documentation  
 - Accessibility and GOV.UK Design Standards will be applied during final styling phase  
-- All development tracked using Git with clean, intentional commits
+- All development tracked using Git with clean, intentional commits  
+- Backend and frontend now communicating through live API endpoints
