@@ -30,25 +30,53 @@ const task = {
 const taskElement = document.createElement('div');
 
   taskElement.classList.add('task');                         
-                                             // CREATE AND APPEND TITLE
+                                                  // CREATE AND APPEND TITLE
 const titleElement = document.createElement('h3');
-titleElement.textContent = task.title;
-taskElement.appendChild(titleElement);
+  titleElement.textContent = task.title;
+  taskElement.appendChild(titleElement);
 
-                                           // CREATE AND APPEND DESCRIPTION
+                                                // CREATE AND APPEND DESCRIPTION
 const descElement = document.createElement('p');
-descElement.textContent = task.description;
-taskElement.appendChild(descElement);
+  descElement.textContent = task.description;
+  taskElement.appendChild(descElement);
 
-                                           // CREATE AND APPEND DATETIME
+                                                    // CREATE AND APPEND DATETIME
 const datetimeElement = document.createElement('p');
-datetimeElement.innerHTML = `<strong>Due:</strong> ${task.datetime}`;
-taskElement.appendChild(datetimeElement);
+  datetimeElement.innerHTML = `<strong>Due:</strong> ${task.datetime}`;
+  taskElement.appendChild(datetimeElement);
 
                                                   // CREATE AND APPEND STATUS
 const statusElement = document.createElement('p');
-statusElement.innerHTML = `<strong>Status:</strong> ${task.status}`;
-taskElement.appendChild(statusElement);
+  statusElement.innerHTML = `<strong>Status:</strong> ${task.status}`;
+  taskElement.appendChild(statusElement);
+
+                                                  //CONTAINER FOR BUTTONS
+const buttonGroup = document.createElement('div');
+  buttonGroup.classList.add('task-buttons');
+                                                  //CREATE AND APPEND DELETE BUTTON
+const deleteBtn = document.createElement('button');
+  deleteBtn.textContent = 'Delete Task';
+  deleteBtn.setAttribute('aria-label', 'Delete this task');
+  deleteBtn.classList.add('delete-task');
+  buttonGroup.appendChild(deleteBtn);
+                                                 //CREATE AND APPEND EDIT BUTTON
+const editBtn = document.createElement('button');
+  editBtn,this.textContent = 'Edit Task';
+  editBtn.setAttribute('aria-label', 'Edit this task');
+  editBtn.classList.add('edit-task');
+  buttonGroup.appendChild.apply(editBtn);
+                                     //APPEND BUTTONS TO TASK
+taskElement.appendChild(buttonGroup);
+
+                                           //DELETE FUNCTIONALITY
+deleteBtn.addEventListener('click', () => {
+  taskElement.remove();
+});
+                                         //EDIT FUNCTIONALITY
+editBtn.addEventListener('click', () => {
+  alert('Edit functionality coming soon!');
+});
+
                                            //APPEND TO DISPLAY CONTAINER
     taskContainer.appendChild(taskElement);
   
