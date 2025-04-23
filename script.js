@@ -1,4 +1,4 @@
-                                                     //D.O.M SELECTIONS
+                                                    //D.O.M SELECTIONS
 const taskForm = document.getElementById('taskForm');
 const taskTitle = document.getElementById('taskTitle');
 const taskDescription = document.getElementById('taskDescription');
@@ -7,19 +7,57 @@ const taskStatus = document.getElementById('taskStatus');
 const taskContainer = document.querySelector('.task-display-container');
 
 
-                                                     //EVENT LISTENERS
+                                                     //EVENT LISTENER
 taskForm.addEventListener('submit', function(event) {
-                         //PREVENT PAGE RELOAD ON SUBMISSION
   event.preventDefault();
 
-                                       //COLLECT AND SANITIZE INPUT DATA FROM THE FORM
+                                       //COLLECT AND VALIDATE INPUT DATA
   const title = taskTitle.value.trim();
   const description = taskDescription.value.trim();
   const datetime = taskDateTime.value;
   const status = taskStatus.value;
 
-                                                        //TASK OBJECT
+                                       //VALIDATE INPUTS BEFORE SENDING TO BACKEND
+  if (!title || !datetime || !status) {
+    alert("Please fill in all required fields.");
+    return;
+  }
+
+                                                       //CONSTRUCT TASK OBJECT
   const task = { title, description, datetime, status };
+
+                                            //SEND POST REQ TO BACKEND API
+  fetch('http://localhost:3000/api/tasks', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(task)
+  })
+  .then(res => {
+    if (!res.ok) {
+      throw new Error('Failed to create task.');
+    }
+    return res.json();
+  })
+  .then(createdTask => {
+    console.log('Task created:', createdTask);
+
+                           //RENDER TASK TO D.O.M
+    renderTask(createdTask);
+
+                     //CLEAR FORM FIELDS
+    taskForm.reset();
+  })
+  .catch(err => {
+    console.error('Error:', err);
+    alert('Something went wrong. Please try again.');
+  });
+});
+
+
+                           //REUSABLE RENDER FUNCTION FOR NEW TASKS
+function renderTask(task) {
 
                                                     //CREATE D.O.M ELEMENT FOR TASK DISPLAY
   const taskElement = document.createElement('div');
@@ -35,7 +73,7 @@ taskForm.addEventListener('submit', function(event) {
   descElement.textContent = task.description;
   taskElement.appendChild(descElement);
 
-                                                      //CREATE AND APPEND DATETIME
+                                                     //CREATE AND APPEND DATETIME
   const datetimeElement = document.createElement('p');
   datetimeElement.innerHTML = `<strong>Due:</strong> ${task.datetime}`;
   taskElement.appendChild(datetimeElement);
@@ -49,7 +87,7 @@ taskForm.addEventListener('submit', function(event) {
   const buttonGroup = document.createElement('div');
   buttonGroup.classList.add('task-buttons');
 
-                                                     //DELETE BUTTON
+                                                    //DELETE BUTTON
   const deleteBtn = document.createElement('button');
   deleteBtn.textContent = 'Delete Task';
   deleteBtn.setAttribute('aria-label', 'Delete this task');
@@ -68,10 +106,10 @@ taskForm.addEventListener('submit', function(event) {
   saveBtn.textContent = 'Save Task';
   saveBtn.setAttribute('aria-label', 'Save this task');
   saveBtn.classList.add('save-task');
-  saveBtn.style.display = 'none'; 
+  saveBtn.style.display = 'none';
   buttonGroup.appendChild(saveBtn);
 
-                                       //APPEND BUTTON GROUP
+                                       //APPEND BUTTON GROUP TO TASK
   taskElement.appendChild(buttonGroup);
 
                                              //DELETE FUNCTIONALITY
@@ -79,9 +117,8 @@ taskForm.addEventListener('submit', function(event) {
     taskElement.remove();
   });
 
-                                            //EDIT FUNCTIONALITY
+                                           //EDIT FUNCTIONALITY
   editBtn.addEventListener('click', () => {
-                                  //CLEAR STATIC TEXT
     titleElement.textContent = '';
     descElement.textContent = '';
     datetimeElement.textContent = '';
@@ -93,19 +130,19 @@ taskForm.addEventListener('submit', function(event) {
     titleInput.value = task.title;
     titleElement.appendChild(titleInput);
 
-                                                      //DESCRIPTION FIELD
+                                                     //DESCRIPTION FIELD
     const descInput = document.createElement('input');
     descInput.type = 'text';
     descInput.value = task.description;
     descElement.appendChild(descInput);
 
-                                                          //DATETIME FIELD
+                                                        //DATETIME FIELD
     const datetimeInput = document.createElement('input');
     datetimeInput.type = 'datetime-local';
     datetimeInput.value = task.datetime;
     datetimeElement.appendChild(datetimeInput);
 
-                                                          //STATUS DROPDOWN
+                                                         //STATUS DROPDOWN
     const statusSelect = document.createElement('select');
     ['todo', 'inprogress', 'done'].forEach(statusVal => {
       const option = document.createElement('option');
@@ -122,27 +159,21 @@ taskForm.addEventListener('submit', function(event) {
 
                                              //SAVE FUNCTIONALITY
     saveBtn.addEventListener('click', () => {
-                                           //UPDATE TASK OBJECT
       task.title = titleInput.value.trim();
       task.description = descInput.value.trim();
       task.datetime = datetimeInput.value;
       task.status = statusSelect.value;
 
-                                            //RE-RENDER TEXT NODES
       titleElement.textContent = task.title;
       descElement.textContent = task.description;
       datetimeElement.innerHTML = `<strong>Due:</strong> ${task.datetime}`;
       statusElement.innerHTML = `<strong>Status:</strong> ${task.status}`;
 
-                                     //TOGGLE BUTTONS BACK
       saveBtn.style.display = 'none';
       editBtn.style.display = 'inline-block';
     });
   });
 
-                                         //APPEND FULLY BUILT TASK TO DISPLAY CONTAINER
+                                         //APPEND TASK TO DOM
   taskContainer.appendChild(taskElement);
-
-                   //RESET THE TASK FORM AFTER SUBMISSION
-  taskForm.reset();
-});
+}
