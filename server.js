@@ -19,6 +19,45 @@ app.get('/api/tasks/:id', (req, res) => {
     }
     res.json(task);//gets the located task 
 });
+
+
+                                            //DELETE A TASK BY ID
+app.delete('/api/tasks/:id', (req, res) => {
+  const taskId = parseInt(req.params.id, 10);
+  const taskIndex = tasks.findIndex(t => t.id === taskId);
+    if (taskIndex === -1) {
+      return res.status(404).json({ error: 'Task not found.' });
+  }
+
+  tasks.splice(taskIndex, 1); // Remove task
+  res.status(204).send(); // 204 No Content = successful delete
+});
+
+
+
+                                         //UPDATE A TASK BY ID
+app.put('/api/tasks/:id', (req, res) => {
+  const taskId = parseInt(req.params.id, 10);
+  const task = tasks.find(t => t.id === taskId);
+    if (!task) {
+      return res.status(404).json({ error: 'Task not found.' });
+  }
+
+  const { title, description, datetime, status } = req.body;
+
+    if (!title || !datetime || !status) {
+      return res.status(400).json({ error: 'Title, datetime, and status are required.' });
+  }
+
+  // Update task properties
+  task.title = title;
+  task.description = description || '';
+  task.datetime = datetime;
+  task.status = status;
+
+  res.json(task); // Return updated task
+});
+
                                      //POST API TASKS
 app.post('/api/tasks', (req,res) => {
   const { title, description, datetime, status} = req.body;
