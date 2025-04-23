@@ -1,0 +1,23 @@
+{
+  "name": "hmcts-task-manager-",
+  "version": "1.0.0",
+  "description": "A task management system for HMCTS caseworkers. Built as part of the April/2025 HMCTS Junior Software Developer coding challenge.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SUDO-j182/HMCTS-Task-Manager-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SUDO-j182/HMCTS-Task-Manager-/issues"
+  },
+  "homepage": "https://github.com/SUDO-j182/HMCTS-Task-Manager-#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
