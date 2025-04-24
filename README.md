@@ -1,92 +1,100 @@
 # HMCTS Task Manager
 
-A task management system for HMCTS caseworkers. Built as part of the April/2025 HMCTS Junior Software Developer coding challenge.
-
-**Status**: Nearing Completion  
-**Last Updated**: April 24, 2025
+A task management system designed to help HMCTS caseworkers efficiently manage their tasks. This project was developed as part of the April 2025 HMCTS Junior Software Developer Coding Challenge.
 
 ---
 
-## Frontend
-
-**HTML**
-- Form and layout structure complete  
-- Semantic and accessible markup applied
-
-**CSS**
-- Styling to be finalized after full functionality confirmed
-
-**JavaScript (Vanilla)**
-- Fully functional task creation, editing, saving, and deletion
-- Form validation and clear error handling for user input
-- Dynamically renders tasks to the DOM using a reusable `renderTask()` function
-- Tasks persist through backend API (no longer in-memory only)
-- UI updates reflect backend changes (PUT/DELETE)
+**Status:** Nearing Completion  
+**Last Updated:** April 24, 2025
 
 ---
 
-## Backend
+## Tech Stack
 
-**Tech Stack**
-- Node.js
-- Express.js
-- PostgreSQL (Live and integrated)
-
-**Implemented REST API Routes**
-| Method | Endpoint                | Description                   |
-|--------|-------------------------|-------------------------------|
-| GET    | `/api/tasks`           | Fetch all tasks               |
-| GET    | `/api/tasks/:id`       | Fetch single task by ID       |
-| POST   | `/api/tasks`           | Add a new task                |
-| PUT    | `/api/tasks/:id`       | Update an existing task       |
-| DELETE | `/api/tasks/:id`       | Delete a task by ID           |
-
-**Features**
-- Full CRUD support using PostgreSQL
-- Secure parameterized queries using `pg` module
-- Input validation on both frontend and backend
-- Comprehensive error handling with user feedback
+- Frontend: HTML, CSS, JavaScript (Vanilla)
+- Backend: Node.js, Express.js
+- Database: PostgreSQL
+- Optional Packaging: Electron.js (planned phase)
 
 ---
 
-## Testing Summary (April 24, 2025)
+## Challenge Requirements Coverage
 
-All API endpoints tested using browser DevTools and `fetch()`:
-- POST: Tasks created and stored in the PostgreSQL database
-- GET (all & by ID): Confirmed task retrieval
-- PUT: Updated tasks reflect immediately in the frontend
-- DELETE: Tasks removed both visually and in database
-
----
-
-## Runtime Environment (Planned)
-
-- **Electron.js**: Package the full stack app into a cross-platform desktop application
+| Requirement                          | Status      |
+|--------------------------------------|-------------|
+| Create, view, update, delete tasks   | Implemented |
+| Store data in a database             | Implemented |
+| RESTful backend API                  | Implemented |
+| Input validation and error handling  | Implemented |
+| Accessible, user-friendly interface  | Implemented |
+| README documentation                 | Included    |
 
 ---
 
-## Notes
+## Frontend Overview
 
-- Code is clean, modular, and well-commented
-- Backend and frontend now communicate fully via RESTful endpoints
-- Styling and accessibility improvements to follow GOV.UK design guidelines
-- Git used throughout with consistent, meaningful commits
-- Project includes progressive enhancements and adheres to best practices
+### HTML
+- Semantic structure with accessible labels and roles
+- Form and task display areas clearly separated
+
+### CSS
+- Custom theme inspired by GOV.UK Design System, using a dark cyan and yellow palette
+- Responsive layout supporting mobile and smaller screens
+- Styled input fields, buttons, status indicators, and focus states
+
+### JavaScript
+- Handles task creation, editing, updating, and deletion
+- Includes form validation and input trimming
+- Dynamically renders tasks to the DOM using a reusable render function
+- Interacts with backend through fetch API
+- Reflects backend updates instantly in the UI
 
 ---
 
-##  Upcoming Tasks
+## Backend Overview
 
-- Final styling pass (GOV.UK-inspired layout)
-- Add favicon (custom or HMCTS-provided)
-- Electron packaging (if time allows)
-- Final README polish and documentation pass
+### REST API Endpoints
+
+| Method | Endpoint             | Description                 |
+|--------|----------------------|-----------------------------|
+| GET    | `/api/tasks`         | Retrieve all tasks          |
+| GET    | `/api/tasks/:id`     | Retrieve task by ID         |
+| POST   | `/api/tasks`         | Create a new task           |
+| PUT    | `/api/tasks/:id`     | Update an existing task     |
+| DELETE | `/api/tasks/:id`     | Delete a task by ID         |
+
+### Features
+- Integrated PostgreSQL database using the `pg` module
+- Secure queries using parameterized inputs
+- Full input validation on both backend and frontend
+- Status codes and error messages returned appropriately
 
 ---
 
-## Notes
+## Testing Summary (as of April 24, 2025)
 
-- Code is structured, modular, and readable with clear inline documentation  
-- Accessibility and GOV.UK Design Standards will be applied during final styling phase  
-- All development tracked using Git with clean, intentional commits  
-- Backend and frontend now communicating through live API endpoints
+All endpoints have been tested manually using browser DevTools:
+
+- POST: Tasks are saved to the database and rendered
+- GET: All and individual task retrieval verified
+- PUT: Edits are reflected in both the UI and database
+- DELETE: Tasks are removed from both DOM and database
+
+---
+
+## Planned Features
+
+- Final styling polish based on GOV.UK layout standards
+- Add a favicon (custom or HMCTS-provided)
+- Electron packaging to enable cross-platform desktop usage
+
+---
+
+## Additional Notes
+
+- The codebase is modular and consistently documented
+- Frontend and backend communicate via clean REST API endpoints
+- Accessibility and usability were considered throughout development
+- Git was used from the beginning with regular, intentional commits
+
+
