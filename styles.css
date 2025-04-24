@@ -6,8 +6,47 @@
     --btnhover-color: #ffe100;
     --alert-color: #ff0000;
   }
+
+         /* === BASE STYLING === */
+  body {
+    font-family: 'Courier New', monospace, sans-serif;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-family: monospace, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  h1 {
+    color: var(--text-color);
+    font-family: inherit;
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+  textarea {
+    width: 100%;
+    max-width: 600px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid var(--text-color);
+    border-radius: 4px;
+    background-color: var(--textarea-color);
+    color: var(--text-color);
+    display: block;
+    margin: 0 auto;
+    resize: vertical;
+  }
+  #taskFormHeading {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+    font-size: 1.5rem;
+  }
   
-  /* === FORM STYLING === */
+  
+  
+  
+  
+                       /* === FORM STYLING === */
   .newtask-form-group {
     background-color: var(--panel-color);
     padding: 1.5rem;
@@ -20,8 +59,13 @@
   .newtask-description,
   .newtask-datetime,
   .newtask-status {
-    margin-bottom: 1.5rem;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 600px;
+  margin: 0 auto 1.5rem auto;
+ }
+
   
   label {
     display: block;
@@ -34,6 +78,8 @@
   input[type="datetime-local"],
   select {
     width: 100%;
+    max-width: 600px;
+    display: block;
     padding: 0.75rem;
     font-size: 1rem;
     border: 1px solid var(--text-color);
@@ -49,25 +95,41 @@
     outline-offset: 2px;
   }
   
-  /* === SUBMIT BUTTON === */
-  button#submitTask {
-    background-color: var(--text-color);
-    color: var(--primary-color);
-    border: none;
-    padding: 0.75rem;
+                /* === SUBMIT BUTTON === */
+.submit-button {
+    text-align: center;
+  }
+  
+button#submitTask {
+    background-color: var(--text-color) !important;
+    color: var(--primary-color) !important;
+    border: 2px solid var(--primary-color) !important;
+    padding: 0.75rem 1.5rem;
     font-size: 1rem;
     font-weight: bold;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    width: auto !important;
   }
+  
   
   button#submitTask:hover {
-    background-color: var(--btnhover-color);
-    transform: scale(1.02);
+    background-color: var(--btnhover-color) !important;
+    transform: scale(1.03);
   }
   
-  /* === TASK CONTAINER === */
+  button#submitTask:active {
+    transform: scale(0.98);
+    box-shadow: none;
+  }
+  
+  
+
+  
+                           /* === TASK CONTAINER === */
   .task-display-container {
     display: flex;
     flex-direction: column;
@@ -75,7 +137,7 @@
     margin-top: 2rem;
   }
   
-  /* === TASK CARD === */
+         /* === TASK CARD === */
   .task {
     background-color: var(--panel-color);
     border-left: 4px solid var(--text-color);
@@ -94,7 +156,7 @@
     margin: 0.5rem 0;
   }
   
-  /* === TASK BUTTONS === */
+                  /* === TASK BUTTONS === */
   .task-buttons {
     margin-top: 1rem;
     display: flex;
@@ -127,7 +189,7 @@
     color: var(--primary-color);
   }
   
-  /* === STATUS BADGES === */
+               /* === STATUS BADGES === */
   .status-tag {
     display: inline-block;
     padding: 0.25rem 0.75rem;
@@ -150,7 +212,7 @@
     background-color: #9acd32;
   }
   
-  /* === ERROR MESSAGES === */
+                   /* === ERROR MESSAGES === */
   .error-message {
     background-color: var(--alert-color);
     color: white;
@@ -162,7 +224,7 @@
     box-shadow: 0 0 0 2px #800000;
   }
   
-  /* === RESPONSIVE DESIGN === */
+                             /* === RESPONSIVE DESIGN === */
   @media (max-width: 600px) {
     body {
       font-size: 15px;

@@ -78,10 +78,30 @@ function renderTask(task) {
   datetimeElement.innerHTML = `<strong>Due:</strong> ${task.datetime}`;
   taskElement.appendChild(datetimeElement);
 
-                                                    //CREATE AND APPEND STATUS
-  const statusElement = document.createElement('p');
-  statusElement.innerHTML = `<strong>Status:</strong> ${task.status}`;
-  taskElement.appendChild(statusElement);
+                                                  //CREATE AND APPEND STATUS
+const statusElement = document.createElement('p');
+statusElement.innerHTML = `<strong>Status:</strong> `;
+
+const statusBadge = document.createElement('span');
+statusBadge.classList.add('status-tag');
+
+switch (task.status.toLowerCase()) {
+  case 'todo':
+    statusBadge.classList.add('status-todo');
+    break;
+  case 'inprogress':
+    statusBadge.classList.add('status-inprogress');
+    break;
+  case 'done':
+    statusBadge.classList.add('status-done');
+    break;
+  default:
+    statusBadge.style.backgroundColor = 'gray';
+}
+
+statusBadge.textContent = task.status;
+statusElement.appendChild(statusBadge);
+taskElement.appendChild(statusElement);
 
                                                     //CONTAINER FOR BUTTONS
   const buttonGroup = document.createElement('div');
