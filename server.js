@@ -1,7 +1,9 @@
                                    //EXPRESS SERVER SETUP
 const express = require('express');//pulls express framwork
+const cors = require('cors');
 const app = express();//runs express 
   app.use(express.json());//middleware to parse json data
+  app.use(cors());//enable cors for all origins
 const tasks = [];//temporary array in memory to store tasks
 const PORT = process.env.PORT || 3000;//sets port to 3000 or the env variable PORT
 
@@ -49,13 +51,13 @@ app.put('/api/tasks/:id', (req, res) => {
       return res.status(400).json({ error: 'Title, datetime, and status are required.' });
   }
 
-  // Update task properties
+                     //UPDATE TASK PROPERTIES
   task.title = title;
   task.description = description || '';
   task.datetime = datetime;
   task.status = status;
 
-  res.json(task); // Return updated task
+  res.json(task); //Return updated task
 });
 
                                      //POST API TASKS

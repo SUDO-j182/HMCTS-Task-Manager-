@@ -112,37 +112,53 @@ function renderTask(task) {
                                        //APPEND BUTTON GROUP TO TASK
   taskElement.appendChild(buttonGroup);
 
-                                             //DELETE FUNCTIONALITY
-  deleteBtn.addEventListener('click', () => {
-    taskElement.remove();
+                                           //DELETE FUNCTIONALITY
+deleteBtn.addEventListener('click', () => {
+  fetch(`http://localhost:3000/api/tasks/${task.id}`, {
+    method: 'DELETE'
+  })
+  .then(res => {
+    if (res.status === 204) {
+      console.log(`Task with ID ${task.id} deleted successfully`);
+                           //REMOVE FROM D.O.M IF SUCCESSFUL
+      taskElement.remove();
+    } else {
+      throw new Error('Failed to delete task.');
+    }
+  })
+  .catch(err => {
+    console.error('Delete error:', err);
+    alert('Could not delete task. Try again.');
   });
+});
 
-                                           //EDIT FUNCTIONALITY
+
+                                             //EDIT FUNCTIONALITY
   editBtn.addEventListener('click', () => {
     titleElement.textContent = '';
     descElement.textContent = '';
     datetimeElement.textContent = '';
     statusElement.textContent = '';
 
-                                                       //TITLE FIELD
+    //TITLE FIELD
     const titleInput = document.createElement('input');
     titleInput.type = 'text';
     titleInput.value = task.title;
     titleElement.appendChild(titleInput);
 
-                                                     //DESCRIPTION FIELD
+    //DESCRIPTION FIELD
     const descInput = document.createElement('input');
     descInput.type = 'text';
     descInput.value = task.description;
     descElement.appendChild(descInput);
 
-                                                        //DATETIME FIELD
+    //DATETIME FIELD
     const datetimeInput = document.createElement('input');
     datetimeInput.type = 'datetime-local';
     datetimeInput.value = task.datetime;
     datetimeElement.appendChild(datetimeInput);
 
-                                                         //STATUS DROPDOWN
+    //STATUS DROPDOWN
     const statusSelect = document.createElement('select');
     ['todo', 'inprogress', 'done'].forEach(statusVal => {
       const option = document.createElement('option');
@@ -153,27 +169,69 @@ function renderTask(task) {
     });
     statusElement.appendChild(statusSelect);
 
-                                   //TOGGLE BUTTONS
+    //TOGGLE BUTTONS
     editBtn.style.display = 'none';
     saveBtn.style.display = 'inline-block';
 
-                                             //SAVE FUNCTIONALITY
+    //SAVE FUNCTIONALITY
     saveBtn.addEventListener('click', () => {
       task.title = titleInput.value.trim();
       task.description = descInput.value.trim();
       task.datetime = datetimeInput.value;
       task.status = statusSelect.value;
 
-      titleElement.textContent = task.title;
-      descElement.textContent = task.description;
-      datetimeElement.innerHTML = `<strong>Due:</strong> ${task.datetime}`;
-      statusElement.innerHTML = `<strong>Status:</strong> ${task.status}`;
+      fetch(`http://localhost:3000/api/tasks/${task.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(task)
+      })
+        .then(res => {
+          if (!res.ok) throw new Error('Failed to update task.');
+          return res.json();
+        })
+        .then(updatedTask => {
+          titleElement.textContent = updatedTask.title;
+          descElement.textContent = updatedTask.description;
+          datetimeElement.innerHTML = `<strong>Due:</strong> ${updatedTask.datetime}`;
+          statusElement.innerHTML = `<strong>Status:</strong> ${updatedTask.status}`;
 
-      saveBtn.style.display = 'none';
-      editBtn.style.display = 'inline-block';
+          saveBtn.style.display = 'none';
+          editBtn.style.display = 'inline-block';
+        })
+        .catch(err => {
+          console.error('Update error:', err);
+          alert('Could not update task. Try again.');
+        });
     });
-  });
+  }); 
 
-                                         //APPEND TASK TO DOM
-  taskContainer.appendChild(taskElement);
+  taskContainer.appendChild(taskElement); 
+} 
+
+                      //FETCH TASKS FROM BACKEND ON PAGE LOAD
+function loadTasks() {
+  fetch('http://localhost:3000/api/tasks')
+    .then(res => {
+      console.log('Raw response:', res);
+      if (!res.ok) {
+        throw new Error('Failed to load tasks.');
+      }
+      return res.json();
+    })
+    .then(taskArray => {
+      console.log('Loaded tasks:', taskArray);
+      taskArray.forEach(task => {
+                         //RENDER TASKS USING REUSABLE FUNCTION
+        renderTask(task);
+      });
+    })
+    .catch(err => {
+      console.error('Error loading tasks:', err);
+      alert('Failed to load tasks from server.');
+    });
 }
+
+//LOAD ALL TASKS ON PAGE LOAD
+document.addEventListener('DOMContentLoaded', loadTasks);
