@@ -5,37 +5,34 @@
     --textarea-color: #003636;
     --btnhover-color: #ffe100;
     --alert-color: #ff0000;
-}
-
-/*###FORM GROUP BASE###*/
-.newtask-form-group {
+  }
+  
+  /* === FORM STYLING === */
+  .newtask-form-group {
     background-color: var(--panel-color);
     padding: 1.5rem;
     border-radius: 8px;
     margin-bottom: 2rem;
     box-shadow: 0 0 0 2px var(--primary-color);
-}
-
-/*###FORM FIELD GROUPS###*/
-.newtask-title,
-.newtask-description,
-.newtask-datetime,
-.newtask-status {
+  }
+  
+  .newtask-title,
+  .newtask-description,
+  .newtask-datetime,
+  .newtask-status {
     margin-bottom: 1.5rem;
-}
-
-/*###LABELS###*/
-label {
+  }
+  
+  label {
     display: block;
     color: var(--text-color);
     font-weight: bold;
     margin-bottom: 0.5rem;
-}
-
-/*###INPUTS AND SELECTS###*/
-input[type="text"],
-input[type="datetime-local"],
-select {
+  }
+  
+  input[type="text"],
+  input[type="datetime-local"],
+  select {
     width: 100%;
     padding: 0.75rem;
     font-size: 1rem;
@@ -43,10 +40,152 @@ select {
     border-radius: 4px;
     background-color: var(--textarea-color);
     color: var(--text-color);
-}
-
-input:focus,
-select:focus {
+  }
+  
+  input:focus,
+  select:focus,
+  button:focus-visible {
     outline: 3px solid var(--btnhover-color);
     outline-offset: 2px;
-}
+  }
+  
+  /* === SUBMIT BUTTON === */
+  button#submitTask {
+    background-color: var(--text-color);
+    color: var(--primary-color);
+    border: none;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  button#submitTask:hover {
+    background-color: var(--btnhover-color);
+    transform: scale(1.02);
+  }
+  
+  /* === TASK CONTAINER === */
+  .task-display-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  /* === TASK CARD === */
+  .task {
+    background-color: var(--panel-color);
+    border-left: 4px solid var(--text-color);
+    padding: 1rem 1.25rem;
+    border-radius: 6px;
+    color: var(--text-color);
+    box-shadow: 0 0 0 1px var(--primary-color);
+  }
+  
+  .task h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+  }
+  
+  .task p {
+    margin: 0.5rem 0;
+  }
+  
+  /* === TASK BUTTONS === */
+  .task-buttons {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  
+  .task-buttons button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .edit-task {
+    background-color: var(--btnhover-color);
+    color: var(--primary-color);
+  }
+  
+  .delete-task {
+    background-color: var(--alert-color);
+    color: white;
+  }
+  
+  .save-task {
+    background-color: var(--text-color);
+    color: var(--primary-color);
+  }
+  
+  /* === STATUS BADGES === */
+  .status-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    color: #000;
+  }
+  
+  .status-todo {
+    background-color: #d3d3d3;
+  }
+  
+  .status-inprogress {
+    background-color: var(--btnhover-color);
+  }
+  
+  .status-done {
+    background-color: #9acd32;
+  }
+  
+  /* === ERROR MESSAGES === */
+  .error-message {
+    background-color: var(--alert-color);
+    color: white;
+    padding: 0.75rem 1rem;
+    margin-top: 1rem;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    box-shadow: 0 0 0 2px #800000;
+  }
+  
+  /* === RESPONSIVE DESIGN === */
+  @media (max-width: 600px) {
+    body {
+      font-size: 15px;
+    }
+  
+    .newtask-form-group {
+      padding: 1rem;
+    }
+  
+    .task {
+      padding: 1rem;
+    }
+  
+    .task-buttons {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    .task-buttons button,
+    button#submitTask {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.1rem;
+    }
+  }
+  
