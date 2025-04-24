@@ -140,25 +140,25 @@ deleteBtn.addEventListener('click', () => {
     datetimeElement.textContent = '';
     statusElement.textContent = '';
 
-    //TITLE FIELD
+                                                       //TITLE FIELD
     const titleInput = document.createElement('input');
     titleInput.type = 'text';
     titleInput.value = task.title;
     titleElement.appendChild(titleInput);
 
-    //DESCRIPTION FIELD
+                                                     //DESCRIPTION FIELD
     const descInput = document.createElement('input');
     descInput.type = 'text';
     descInput.value = task.description;
     descElement.appendChild(descInput);
 
-    //DATETIME FIELD
+                                                         //DATETIME FIELD
     const datetimeInput = document.createElement('input');
     datetimeInput.type = 'datetime-local';
     datetimeInput.value = task.datetime;
     datetimeElement.appendChild(datetimeInput);
 
-    //STATUS DROPDOWN
+                                                         //STATUS DROPDOWN
     const statusSelect = document.createElement('select');
     ['todo', 'inprogress', 'done'].forEach(statusVal => {
       const option = document.createElement('option');
@@ -169,11 +169,11 @@ deleteBtn.addEventListener('click', () => {
     });
     statusElement.appendChild(statusSelect);
 
-    //TOGGLE BUTTONS
+                                  //TOGGLE BUTTONS
     editBtn.style.display = 'none';
     saveBtn.style.display = 'inline-block';
 
-    //SAVE FUNCTIONALITY
+                                             //SAVE FUNCTIONALITY
     saveBtn.addEventListener('click', () => {
       task.title = titleInput.value.trim();
       task.description = descInput.value.trim();
@@ -233,5 +233,5 @@ function loadTasks() {
     });
 }
 
-//LOAD ALL TASKS ON PAGE LOAD
+                                                        //LOAD ALL TASKS ON PAGE LOAD
 document.addEventListener('DOMContentLoaded', loadTasks);

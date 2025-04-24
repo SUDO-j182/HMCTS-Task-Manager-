@@ -1,0 +1,52 @@
+:root {
+    --primary-color: #008b8b;
+    --text-color: #ffff00;
+    --panel-color: #004f4f;
+    --textarea-color: #003636;
+    --btnhover-color: #ffe100;
+    --alert-color: #ff0000;
+}
+
+/*###FORM GROUP BASE###*/
+.newtask-form-group {
+    background-color: var(--panel-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+/*###FORM FIELD GROUPS###*/
+.newtask-title,
+.newtask-description,
+.newtask-datetime,
+.newtask-status {
+    margin-bottom: 1.5rem;
+}
+
+/*###LABELS###*/
+label {
+    display: block;
+    color: var(--text-color);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+/*###INPUTS AND SELECTS###*/
+input[type="text"],
+input[type="datetime-local"],
+select {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid var(--text-color);
+    border-radius: 4px;
+    background-color: var(--textarea-color);
+    color: var(--text-color);
+}
+
+input:focus,
+select:focus {
+    outline: 3px solid var(--btnhover-color);
+    outline-offset: 2px;
+}
