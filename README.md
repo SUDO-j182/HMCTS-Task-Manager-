@@ -4,8 +4,8 @@ A task management system designed to help HMCTS caseworkers efficiently manage t
 
 ---
 
-**Status:** Nearing Completion  
-**Last Updated:** April 24, 2025
+**Status:** COMPLETE  
+**Last Updated:** April 25, 2025
 
 ---
 
@@ -84,7 +84,6 @@ All endpoints have been tested manually using browser DevTools:
 
 ## Planned Features
 
-- Final styling polish based on GOV.UK layout standards
 - Add a favicon (custom or HMCTS-provided)
 - Electron packaging to enable cross-platform desktop usage
 
@@ -96,5 +95,6 @@ All endpoints have been tested manually using browser DevTools:
 - Frontend and backend communicate via clean REST API endpoints
 - Accessibility and usability were considered throughout development
 - Git was used from the beginning with regular, intentional commits
+- I enjoyed every part of this challenge, especially the backend set up and database integration. 
 
 
