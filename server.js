@@ -1,4 +1,4 @@
-                               //IMPORT DATABASE
+                                //IMPORT DATABASE
 const pool = require('./db.js');
 
                                   //EXPRESS SERVER SETUP
@@ -104,7 +104,11 @@ app.delete('/api/tasks/:id', async (req, res) => {
   }
 });
 
-                         //PORT LISTENER
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+                              //PORT LISTENER (only if not in testing mode)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
