@@ -5,7 +5,7 @@ A task management system designed to help HMCTS caseworkers efficiently manage t
 ---
 
 **Status:** COMPLETE  
-**Last Updated:** April 25, 2025
+**Last Updated:** April 27, 2025
 
 ---
 
@@ -79,6 +79,16 @@ All endpoints have been tested manually using browser DevTools:
 - GET: All and individual task retrieval verified
 - PUT: Edits are reflected in both the UI and database
 - DELETE: Tasks are removed from both DOM and database
+
+## Unit Testing Summary (as of April 27, 2025)
+
+### Frameworks Used
+- Jest (for running unit tests)
+- Supertest (for simulating HTTP requests)
+
+### Tests Implemented
+- GET `/api/tasks` - Verifies all tasks are retrieved successfully with a 200 OK status and an array response
+- POST `/api/tasks` - Confirms that new tasks can be created successfully and stored in the database
 
 ---
 
